@@ -14,7 +14,6 @@ public class TsetMasterSlave {
     private Jedis jedis_slave;
 
 
-
     @Before
     public void setup(){
         jedis_master =new Jedis("127.0.0.1",6379);
