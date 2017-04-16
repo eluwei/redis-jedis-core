@@ -26,16 +26,28 @@ public class JedisPoolManager {
         //获取Jedis 连接池
         JedisPoolConfig jedisPoolConfig =new JedisPoolConfig();
         //设置连接池属性
+
+        //设置最大连接数
         jedisPoolConfig.setMaxTotal(Integer.valueOf(bundle.getString("redis.pool.maxActive")));
+
+        //最大能够保持idel状态的对象数
         jedisPoolConfig.setMaxIdle(Integer.valueOf(bundle.getString("redis.pool.maxIdle")));
+
+        //当池内没有返回对象时，最大等待时间
         jedisPoolConfig.setMaxWaitMillis(Long.valueOf(bundle.getString("redis.pool.maxWait")));
+
+        //当调用borrow Object方法时，是否进行有效性检查
         jedisPoolConfig.setTestOnBorrow(Boolean.valueOf(bundle.getString("redis.pool.testOnBorrow")));
+
+        //当调用return Object方法时，是否进行有效性检查
         jedisPoolConfig.setTestOnReturn(Boolean.valueOf(bundle.getString("redis.pool.testOnReturn")));
 
         //创建连接池对象
         pool = new JedisPool(jedisPoolConfig,bundle.getString("redis.ip"), Integer.parseInt(bundle.getString("redis.port")));
 
         System.out.println(pool.getResource().ping());
+
+
     }
 
     public JedisPool getJedisPool(){

@@ -30,7 +30,7 @@ public class JedisPoolManagerTest {
 
         // 释放对象池
         // 这个方法已过时
-        // pool.returnResource(jedis);
+        // pool.returnResource(jedis); 因为jedis.close()时,会调用returnResource 方法。
         jedis.close();
     }
 }

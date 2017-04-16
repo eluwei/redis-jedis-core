@@ -10,12 +10,12 @@ import java.util.ResourceBundle;
 
 /**
  * @ClassName: JedisPoolMasterSlave
- * @Description: ( Jedis Master-Slave模式)
+ * @Description: ( redis 分片式集群连接池,一般用于扩容。)
  * @author hong
  * @date 2017/4/12
  * @version v1.1
  */
-public class JedisPoolMasterSlave {
+public class ShardedJedisPoolManager {
 
     private static  ShardedJedisPool shardedJedisPool;
 

@@ -8,13 +8,13 @@ import redis.clients.jedis.ShardedJedisPool;
 /**
  * Created by hong on 2017/4/12.
  */
-public class JedisPoolMasterSlaveTest {
+public class ShardedJedisPoolManagerTest {
 
     private ShardedJedisPool pool;
 
     @Before
     public void setup() {
-        JedisPoolMasterSlave jedisPoolMasterSlave =new JedisPoolMasterSlave();
+        ShardedJedisPoolManager jedisPoolMasterSlave =new ShardedJedisPoolManager();
         pool = jedisPoolMasterSlave.getJedisPool();
     }
 
