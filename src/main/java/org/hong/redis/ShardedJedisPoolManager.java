@@ -36,6 +36,7 @@ public class ShardedJedisPoolManager {
         jedisPoolConfig.setTestOnReturn(Boolean.valueOf(bundle.getString("redis.pool.testOnReturn")));
 
         //创建连接池对象
+        //注意: 在分片式情况下,必须保证在不同的机器上,既ip不一样。
         JedisShardInfo jedisShardInfo =new JedisShardInfo(bundle.getString("redis.ip"),bundle.getString("redis.port"));
         JedisShardInfo jedisShardInfo2 =new JedisShardInfo(bundle.getString("redis.ip"),bundle.getString("redis.port2"));
         JedisShardInfo jedisShardInfo3 =new JedisShardInfo(bundle.getString("redis.ip"),bundle.getString("redis.port3"));
