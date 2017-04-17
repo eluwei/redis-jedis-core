@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="32"></property>
+        <property name="maxIdle" value="6"></property>
+        <property name="testOnBorrow" value="true" />
+    </bean>
+
+    <bean id="jedisConnectionFactory" class="org.springframework.data.redis.connection.jedis.JedisConnectionFactory" destroy-method="destroy">
+        <property name="poolConfig" ref="jedisPoolConfig"></property>
+        <property name="hostName" value="192.168.6.204"></property>
+        <property name="port" value="6379"></property>
+        <property name="timeout" value="15000"></property>
+        <property name="usePool" value="true"></property>
+    </bean>
+    <bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate" >
+        <property name="connectionFactory" ref="jedisConnectionFactory"></property>
+        <property name="keySerializer">
+            <bean class="org.springframework.data.redis.serializer.StringRedisSerializer"/>
+        </property>
+        <property name="valueSerializer">
+            <bean class="org.springframework.data.redis.serializer.JdkSerializationRedisSerializer"/>
+        </property>
+    </bean>
+</beans>
