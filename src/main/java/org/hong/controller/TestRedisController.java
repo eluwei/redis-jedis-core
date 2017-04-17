@@ -21,5 +21,6 @@ public class TestRedisController {
     public void testRedis(){
         Set<String> redisSet = redisTemplate.keys("*");
         System.out.println(redisSet.size());
+
     }
 }
