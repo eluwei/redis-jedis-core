@@ -1,5 +1,6 @@
 package org.hong.controller;
 
+import org.hong.redis.utils.RedisTemplateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -14,13 +15,14 @@ import java.util.Set;
 @RequestMapping("/test")
 public class TestRedisController {
 
+
     @Autowired
-    private RedisTemplate redisTemplate;
+    private RedisTemplateUtils redisTemplateUtils;
 
     @RequestMapping("/redis")
     public void testRedis(){
-        Set<String> redisSet = redisTemplate.keys("*");
-        System.out.println(redisSet.size());
+        String v1 = redisTemplateUtils.getStrValue("k1");
+        System.out.println(v1);
 
     }
 }
